@@ -1,6 +1,7 @@
 var search = (function () {
 
   var searchServiceUrl = 'http://localhost:3001/search/';
+
   var autocomplete;
   var $search, $button, $loading;
 
@@ -31,22 +32,27 @@ var search = (function () {
     $search.addEventListener('keyup', handleSearch, false);
   }
 
-  function handleSearch() {
+  function handleSearch(event) {
 
-    utils.getJson(searchServiceUrl + this.value, function (results, error) {
+    // Ignore arrow up and arrow down
+    if(event.keyCode != 39 && event.keyCode != 40) {
 
-      if (!error) {
+      // Get data from remote server via AJAX
+      utils.getJson(searchServiceUrl + this.value, function (results, error) {
 
-        var list = [];
+        if (!error) {
 
-        results.forEach(function(key, value) {
+          var list = [];
 
-          list.push(value.name);
-        });
+          results.forEach(function (key) {
 
-        autocomplete.list = list;
-      }
-    });
+            list.push(key);
+          });
+
+          autocomplete.list = list;
+        }
+      });
+    }
   }
 
   return {
