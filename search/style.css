@@ -65,6 +65,10 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
+.awesomplete {
+  width: calc(100% - 110px);
+}
+
 #search,
 #button {
   height: 2em;
@@ -72,7 +76,7 @@ input:-webkit-autofill {
 }
 
 #search {
-  width: calc(100% - 110px);
+  width: 100%;
   padding: 0 .4em;
   border: 2px solid #ccd;
   border-right: 0;

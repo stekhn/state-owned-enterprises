@@ -6,22 +6,15 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "state-owned-enterprises"
+    "url": "git@github.com:stekhn/state-owned-enterprises.git"
   },
   "scripts": {
     "sass": "sass --watch interface/styles:src/styles",
     "dist": "grunt dist"
   },
-  "devDependencies": {
-    "autoprefixer": "^6.3.1",
-    "bower": "^1.7.7",
-    "cssnano": "^3.4.0",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.7.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-uglify": "^0.11.0",
-    "grunt-postcss": "^0.7.1",
-    "grunt-usemin": "^3.1.1"
+  "dependencies": {
+    "awesomplete": "^1.1.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.5"
   }
 }
