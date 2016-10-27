@@ -35,8 +35,6 @@ var search = (function () {
 
   function bindEvents() {
 
-    // $searchButton.addEventListener('click', handleClick, false);
-    // $search.addEventListener('keypress', handleEnter, false);
     $search.addEventListener('keyup', handleSearch, false);
     $homeButton.addEventListener('click', openSearchPage, false);
   }
@@ -102,17 +100,34 @@ var search = (function () {
 
     function renderParent(parent) {
 
-      utils.createElement('li', $parentsList, ['textContent', parent.name]);
+      var $parent = utils.createElement('li', $parentsList,
+        ['textContent', parent.name],
+        ['data-id', parent.id]);
+
+      $parent.addEventListener('click', handleClick, false);
     }
 
     function renderChild(child) {
 
-      utils.createElement('li', $childrenList, ['textContent', child.name]);
+      utils.createElement('li', $childrenList,
+        ['textContent', child.name],
+        ['data-id', child.id]);
     }
 
     // @TODO Don't use innerHTML
     var $source = utils.createElement('p', $result);
     $source.innerHTML = 'Source: <a href="' + company.source_link + '">' + company.source + '</a>';
+  }
+
+  function handleClick(event) {
+
+    // Extend event with company id
+    event.text = {};
+    event.text.value = event.target['data-id'];
+
+    console.log(event.text.value);
+
+    handleComplete(event);
   }
 
   function getRelatedCompanies(parents, callback) {

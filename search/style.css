@@ -22,7 +22,7 @@ a {
 
 header {
   background: #fff;
-  padding: 0 2em;
+  padding: 0 10px;
   height: 50px;
   line-height: 50px;
   margin-bottom: 4em;
@@ -154,6 +154,12 @@ input:-webkit-autofill {
 
 .result-page {
   display: none;
+}
+
+li {
+  color: #4daa17;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .info {
