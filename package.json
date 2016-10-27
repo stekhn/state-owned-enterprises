@@ -9,8 +9,7 @@
     "url": "git@github.com:stekhn/state-owned-enterprises.git"
   },
   "scripts": {
-    "sass": "sass --watch interface/styles:src/styles",
-    "dist": "grunt dist"
+    "start": "node node_modules/http-server/bin/http-server -d false --cors"
   },
   "dependencies": {
     "awesomplete": "^1.1.1",
