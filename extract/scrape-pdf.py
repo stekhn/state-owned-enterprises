@@ -14,7 +14,7 @@ pages = list(root)
 print HTMLParser().unescape(lxml.etree.tostring(root, pretty_print=True))
 #print pdfdata
 
-skiplist=['COUNTRY','FACTORY NAME','ADDRESS','CITY','REGION']
+skiplist=['Frima', 'Gegenstand', 'Nennekapital']
 for page in pages[5]:
   for el in page:
     data = {}
