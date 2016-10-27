@@ -85,13 +85,59 @@ var search = (function () {
     utils.emptyElement($result);
     utils.createElement('h1', $result, ['textContent', company.name]);
 
-    console.log(company);
+    utils.createElement('p', $result,
+      ['textContent', 'Capital: ' + niceNumber(company.capital) + ' ' + company.capital_curreny]);
+
+
+    var $parents = utils.createElement('div', $result);
+    utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
+    var $parentsList = utils.createElement('ul', $parents);
+
+    var $children = utils.createElement('div', $result);
+    utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
+    var $childrenList = utils.createElement('ul', $children);
+
+    getRelatedCompanies(company.parents, renderParent);
+    getRelatedCompanies(company.children, renderChild);
+
+    function renderParent(parent) {
+
+      utils.createElement('li', $parentsList, ['textContent', parent.name]);
+    }
+
+    function renderChild(child) {
+
+      utils.createElement('li', $childrenList, ['textContent', child.name]);
+    }
+
+    // @TODO Don't use innerHTML
+    var $source = utils.createElement('p', $result);
+    $source.innerHTML = 'Source: <a href="' + company.source_link + '">' + company.source + '</a>';
+  }
+
+  function getRelatedCompanies(parents, callback) {
+
+    parents.forEach(function (companyId) {
+
+      utils.getJson(companyService + companyId, function (company, error) {
+
+        if (!error) {
+
+          callback(company[0]);
+        }
+      });
+    });
   }
 
   function openSearchPage() {
 
     $searchPage.style.display = 'block';
     $resultPage.style.display = 'none';
+  }
+
+  function niceNumber(x) {
+
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   return {

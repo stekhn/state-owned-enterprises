@@ -33,6 +33,24 @@ function saveToMongo(companies) {
         // Convert date strings to date objects
         company.source_date = new Date(company.source_date);
 
+        if(company.parents) {
+
+          company.parents = company.parents.toString();
+          company.parents = company.parents.split(',');
+        } else {
+
+          company.parents = [];
+        }
+
+        if(company.children) {
+
+          company.children = company.children.toString();
+          company.children = company.children.split(',');
+        } else {
+
+          company.children = [];
+        }
+
         console.log('Upserted company ', company.name);
 
         // Upsert method
