@@ -3,15 +3,14 @@ var search = (function () {
   var searchServiceUrl = 'http://localhost:3001/search/';
 
   var autocomplete;
-  var $search, $button, $loading;
+  var $search, $button;
 
   document.addEventListener('DOMContentLoaded', init, false);
 
   function init() {
 
-    $search = document.getElementById('search');
-    $button = document.getElementById('button');
-    $loading = document.getElementById('loading');
+    $search = document.querySelector('.search');
+    $button = document.querySelector('.button');
 
     initAutocomplete();
     bindEvents();

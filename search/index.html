@@ -19,41 +19,43 @@
 
 <body>
 
-  <header>
-    <h1>State-O</h1>
-  </header>
+  <main class="app">
+    <header>
+      <h1>State-O</h1>
+    </header>
 
-  <section class="center">
-    <h1>A database for state owned companies</h1>
+    <section class="center ">
 
-    <form>
-      <fieldset>
-        <input id="search" type="search" autofocus>
-        <button id="button" type="button">
-          <div>
-            <span>Search</span>
-            <div id="loading" class="loading"></div>
-          </div>
-        </button>
-      </fieldset>
-    </form>
+      <h1>Search for state-owned enterprises:</h1>
 
-    <article class="row">
-      <div class="col-1-2 padding-right">
-        <h3>Why?</h3>
-        <p>State-O aims to shed light on stated-owned enterprises and offers information in a simple searchable database. More and more public services are privatized and there are many known cases of state-owned or partially state-owned companies being involved in scandals and shady business.
-        </p>
-      </div>
-      <div class="col-1-2">
-      <h3>Help us!</h3>
-        <p>
-        Information about publicly owned companies and public private partnerships is many times hidden in PDFs published by government bodies, city councils or other public sources. Help us by <a href="mailto:foo@bar">sending us data about state owned companies</a> so we can expand State-O and build a database for SOCs all over Europe!
-        </p>
-      </div>
-    </article>
-  </section>
+      <form>
+        <fieldset>
+          <input class="search" type="search" autofocus>
+          <button class="button" type="button">
+            <div>
+              <span>Search</span>
+            </div>
+          </button>
+        </fieldset>
+      </form>
 
-  <section id="results" class="results center"></section>
+      <article class="info row">
+        <div class="col-1-2 padding-right">
+          <h2>Why?</h2>
+          <p>State-O aims to shed light on stated-owned enterprises and offers information in a simple searchable database. More and more public services are privatized and there are many known cases of state-owned or partially state-owned companies being involved in scandals and shady business.
+          </p>
+        </div>
+        <div class="col-1-2">
+          <h2>Help us!</h2>
+          <p>
+          Information about publicly owned companies and public private partnerships is many times hidden in PDFs published by government bodies, city councils or other public sources. Help us by <a href="mailto:foo@bar">sending us data about state owned companies</a> so we can expand State-O and build a database for SOCs all over Europe!
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section id="results" class="results center"></section>
+  </main>
 
   <footer>
     <p>A prototype by <a href="http://br.de/data">BR Data</a> for the <a href="http://globaleditorsnetwork.org">Global Editors Hackathon</a> at <a href="http://sz.de">Süddeutsche Zeitung</a>, 2016</p>
