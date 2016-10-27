@@ -32,6 +32,7 @@ header {
 header h1 {
   margin: 0;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 footer {
@@ -78,7 +79,7 @@ input:-webkit-autofill {
 }
 
 .search,
-.button {
+.search-button {
   height: 2em;
   display: inline-block;
 }
@@ -99,7 +100,7 @@ input:-webkit-autofill {
   border-color: #aab;
 }
 
-.button {
+.search-button {
   width: 110px;
   float: right;
   color: white;
@@ -116,18 +117,18 @@ input:-webkit-autofill {
   transition: background .2s ease, border .2s ease;
 }
 
-.button:hover {
+.search-button:hover {
   background: #3d8812;
   border-color: #3d8812;
 }
 
-.button div {
+.search-button div {
   display: inline-block;
   white-space: nowrap;
   vertical-align: text-bottom;
 }
 
-.button span {
+.search-button span {
   margin-right: .2em;
 }
 
@@ -135,8 +136,12 @@ input:-webkit-autofill {
   background: #fff;
 }
 
+.result-page {
+  display: none;
+}
+
 .info {
-  padding-bottom: 3em;
+  padding-bottom: 4em;
 }
 
 /* Awesomplete */
@@ -216,7 +221,6 @@ div.awesomplete li[aria-selected="true"] mark {
 .row {
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 3em;
 }
 
 .row:last-child {
@@ -284,14 +288,14 @@ div.awesomplete li[aria-selected="true"] mark {
     border-radius: 4px;
   }
 
-  .button {
+  .search-button {
     width: 100%;
     margin-top: .5em;
     text-align: center;
     border-radius: 4px;
   }
 
-  .button > div {
+  .search-button > div {
     width: 100%;
   }
 }

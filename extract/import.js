@@ -27,6 +27,9 @@ function saveToMongo(companies) {
 
       companies.forEach(function (company) {
 
+        // Convert ID to string
+        company.id = company.id.toString();
+
         // Convert date strings to date objects
         company.source_date = new Date(company.source_date);
 

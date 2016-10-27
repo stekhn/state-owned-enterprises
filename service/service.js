@@ -33,7 +33,7 @@ router.route('/search/:string').get(function (req, res) {
 
     list = list.map(function (company) {
 
-      return company.name;
+      return [company.id, company.name];
     });
 
     res.json(list);
