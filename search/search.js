@@ -4,16 +4,19 @@ var search = (function () {
   var companyService = 'http://localhost:3001/company/';
 
   var autocomplete;
-  var $search, $searchButton, $searchPage, $resultPage, $homeButton;
+  var $search, $searchButton, $searchPage, $result, $resultPage, $homeButton;
 
   document.addEventListener('DOMContentLoaded', init, false);
 
   function init() {
 
     $search = document.querySelector('.search');
-    $searchButton = document.querySelector('.search-button');
     $searchPage = document.querySelector('.search-page');
+    $searchButton = document.querySelector('.search-button');
+
+    $result = document.querySelector('.result');
     $resultPage = document.querySelector('.result-page');
+
     $homeButton  = document.querySelector('.home-button');
 
     initAutocomplete();
@@ -76,10 +79,13 @@ var search = (function () {
 
   function openResultPage(company) {
 
-    console.log(company);
-
     $searchPage.style.display = 'none';
     $resultPage.style.display = 'block';
+
+    utils.emptyElement($result);
+    utils.createElement('h1', $result, ['textContent', company.name]);
+
+    console.log(company);
   }
 
   function openSearchPage() {
