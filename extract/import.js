@@ -10,7 +10,7 @@ var collectionName = 'companies';
 (function init() {
 
    // Load and parse the datasets
-  var companies = parseCSV(loadFile('./extract/direct_ownership.csv'));
+  var companies = parseCSV(loadFile('./extract/master.csv'));
 
   saveToMongo(companies);
 })();

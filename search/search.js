@@ -77,6 +77,8 @@ var search = (function () {
 
   function openResultPage(company) {
 
+    console.log(company);
+
     $searchPage.style.display = 'none';
     $resultPage.style.display = 'block';
 
@@ -124,8 +126,6 @@ var search = (function () {
     // Extend event with company id
     event.text = {};
     event.text.value = event.target['data-id'];
-
-    console.log(event.text.value);
 
     handleComplete(event);
   }
