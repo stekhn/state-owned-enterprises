@@ -2,7 +2,6 @@
 
 **State-O** is a aatabase and search engine for state owned companies. A prototype by <a href="http://br.de/data">BR Data</a> for the <a href="http://globaleditorsnetwork.org">Global Editors Hackathon</a> at <a href="http://sz.de">Süddeutsche Zeitung</a>, 2016.
 
-
 ### Why?
 Information about publicly owned companies and public private partnerships is many times hidden in PDFs published by government bodies, city councils or other public sources, making it difficult for investigative journalists to search for them in a single place. However, there are many known cases of state-owned or partially state-owned companies being involved in scandals and shady business. For example, [a subsidiary of German public bank KfW is shareholder of Cayman Island trust companies](http://www.tagesspiegel.de/wirtschaft/millionen-im-paradies-kfw-tochter-deg-investiert-in-steueroasen/13686554.html).
 
@@ -33,5 +32,7 @@ The dataset is currently imported from a CSV-File which contains an entry for ea
 In the case of Germany, a PDF from the Ministery of Finance was extracted with tabula and split into direct and indirect ownerships (direct_ownership.csv, indirect_ownership.csv). Poppler/pdftohtml (scrape-pdf.py) unfortunately did not give better results. Since parts of the PDF are messy, a script (merges-lines.py) merges entries which where split over several lines in the original document. Establishing a final version of the dataset still requires therefore some data tidying and cleaning. The R-Script build-links.R sketches a way to merge direct and indirect ownerships.
 
 ### Possible improvements
+- Most logic should be done server-side (nice URLs, better search engine visibillity, cacheable) 
 - Use a real graph database
+- Use `undefined` for importing empty cells 
 - Add Docker config for simple deployment

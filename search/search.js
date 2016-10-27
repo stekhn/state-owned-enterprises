@@ -27,6 +27,7 @@ var search = (function () {
 
     autocomplete = new Awesomplete($search, {
       minChars: 1,
+      maxItems: 5,
       autoFirst: true
     });
 
@@ -77,7 +78,7 @@ var search = (function () {
 
   function openResultPage(company) {
 
-    console.log(company);
+    console.log('Current company:', company);
 
     $searchPage.style.display = 'none';
     $resultPage.style.display = 'block';
@@ -86,19 +87,23 @@ var search = (function () {
     utils.createElement('h1', $result, ['textContent', company.name]);
 
     utils.createElement('p', $result,
-      ['textContent', 'Capital: ' + niceNumber(company.capital) + ' ' + company.capital_curreny]);
+      ['textContent', 'Capital: ' + niceNumber(company.capital) + ' ' + (company.capital_curreny || 'EUR')]);
 
+    if (company.parents != '') {
 
-    var $parents = utils.createElement('div', $result);
-    utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
-    var $parentsList = utils.createElement('ul', $parents);
+      var $parents = utils.createElement('div', $result);
+      utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
+      var $parentsList = utils.createElement('ul', $parents);
+      getRelatedCompanies(company.parents, renderParent);
+    }
 
-    var $children = utils.createElement('div', $result);
-    utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
-    var $childrenList = utils.createElement('ul', $children);
+    if (company.children != '') {
 
-    getRelatedCompanies(company.parents, renderParent);
-    getRelatedCompanies(company.children, renderChild);
+      var $children = utils.createElement('div', $result);
+      utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
+      var $childrenList = utils.createElement('ul', $children);
+      getRelatedCompanies(company.children, renderChild);
+    }
 
     function renderParent(parent) {
 
@@ -111,9 +116,11 @@ var search = (function () {
 
     function renderChild(child) {
 
-      utils.createElement('li', $childrenList,
+      var $child = utils.createElement('li', $childrenList,
         ['textContent', child.name],
         ['data-id', child.id]);
+
+      $child.addEventListener('click', handleClick, false);
     }
 
     // @TODO Don't use innerHTML
@@ -122,6 +129,7 @@ var search = (function () {
   }
 
   function handleClick(event) {
+
 
     // Extend event with company id
     event.text = {};
@@ -146,6 +154,7 @@ var search = (function () {
 
   function openSearchPage() {
 
+    $search.value = '';
     $searchPage.style.display = 'block';
     $resultPage.style.display = 'none';
   }
