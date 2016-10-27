@@ -11,14 +11,13 @@ State-O aims to shed light on stated-owned enterprises and offers information in
 ### Scale
 In the first draft, State-O uses information on companies controlled directly or indirectly by the German federal government, [published by the Federal Ministry of Finance in PDF format](https://www.bundesfinanzministerium.de/Content/DE/Standardartikel/Themen/Bundesvermoegen/Privatisierungs_und_Beteiligungspolitik/Beteiligungspolitik/Beteiligungsberichte/beteiligungsbericht-des-bundes-2015.pdf?__blob=publicationFile&v=6). Other sources from European state Governments, regional Governments and city councils can be added in the future.
 
-### Installation
+### Setup
 State-O depends on [Node.js](https://nodejs.org/) and a running [MongoDB](https://www.mongodb.com/) instance.
 
 1. Clone repository `git clone git@github.com:stekhn/state-owned-enterprises.git`
 2. Download required dependcies `npm install`
 3. Import dataset `node import.js` to MongoDB 
-4. Start database search service `node service/service.js`
-5. Start webserver for the search interface `node run start`
+4. Start webserver and search service `node run start`
 6. Open the search http://localhost:8080/search/
 
 ### Possible improvements
