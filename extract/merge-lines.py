@@ -16,11 +16,11 @@ import re
 ifile  = open('./mittelbar.csv', "rb")
 reader = csv.reader(ifile)
 
-ofile  = open('./output.csv', "wb")
+ofile  = open('./indirect_ownership.csv', "wb")
 writer = csv.writer(ofile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
 
 # data = ['3','A & T Motor Retailing','Verkauf von','1.505.000','1.505.000','100','Broadwood Finance']
-data = ['','','','','','','']
+data = ['id','name','object','capital','capital_share','capital_share_perc','parent']
 
 rownum = 0
 
