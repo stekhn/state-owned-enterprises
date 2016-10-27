@@ -13,28 +13,33 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   margin: 0;
   height: 100%;
+  background: #334;
+}
+
+a {
+  color: #4daa17;
 }
 
 header {
   background: #fff;
   padding: 0 2em;
-  height: 70px;
-  line-height: 70px;
-  margin-bottom: 3em;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 4em;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .3)
 }
 
 header h1 {
-  margin-top: 0;
+  margin: 0;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 footer {
   text-align: center;
   background: #334;
   color: #fff;
-  margin-top: 3em;
   padding: 1em 2em;
-  height: 100%;
 }
 
 footer a {
@@ -46,6 +51,10 @@ footer a {
   max-width: 840px;
   margin: 0 auto;
   padding: 0 2em;
+}
+
+form {
+  margin-bottom: 3em;
 }
 
 fieldset {
@@ -69,13 +78,13 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
 }
 
-#search,
-#button {
+.search,
+.search-button {
   height: 2em;
   display: inline-block;
 }
 
-#search {
+.search {
   width: 100%;
   padding: 0 .4em;
   border: 2px solid #ccd;
@@ -87,11 +96,11 @@ input:-webkit-autofill {
   transition: border .2s ease;
 }
 
-#search:focus {
+.search:focus {
   border-color: #aab;
 }
 
-#button {
+.search-button {
   width: 110px;
   float: right;
   color: white;
@@ -108,27 +117,31 @@ input:-webkit-autofill {
   transition: background .2s ease, border .2s ease;
 }
 
-#button:hover {
-  background: #3a77ca;
-  border-color: #3a77ca;
+.search-button:hover {
+  background: #3d8812;
+  border-color: #3d8812;
 }
 
-#button div {
+.search-button div {
   display: inline-block;
   white-space: nowrap;
   vertical-align: text-bottom;
 }
 
-#button span {
+.search-button span {
   margin-right: .2em;
 }
 
-#button .loading {
-  visibility: hidden;
+.app {
+  background: #fff;
 }
 
-a {
-  color: #4daa17;
+.result-page {
+  display: none;
+}
+
+.info {
+  padding-bottom: 4em;
 }
 
 /* Awesomplete */
@@ -208,7 +221,6 @@ div.awesomplete li[aria-selected="true"] mark {
 .row {
   display: flex;
   flex-flow: row wrap;
-  margin: 2em 0 3em;
 }
 
 .row:last-child {
@@ -267,20 +279,23 @@ div.awesomplete li[aria-selected="true"] mark {
 
 @media all and (max-width: 360px) {
 
-  #search {
+  div.awesomplete {
     width: 100%;
+  }
+
+  .search {
     border-right: 2px solid #ccd;
     border-radius: 4px;
   }
 
-  #button {
+  .search-button {
     width: 100%;
     margin-top: .5em;
     text-align: center;
     border-radius: 4px;
   }
 
-  #button > div {
+  .search-button > div {
     width: 100%;
   }
 }
