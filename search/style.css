@@ -170,6 +170,15 @@ li {
   font-size: 2em;
 }
 
+.source {
+  margin-top: 2em;
+  color: #99a;
+}
+
+.source a {
+  color: #99a;
+}
+
 /* Awesomplete */
 [hidden] { display: none; }
 

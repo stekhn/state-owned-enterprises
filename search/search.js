@@ -27,7 +27,7 @@ var search = (function () {
 
     autocomplete = new Awesomplete($search, {
       minChars: 1,
-      maxItems: 5,
+      maxItems: 7,
       autoFirst: true
     });
 
@@ -42,8 +42,9 @@ var search = (function () {
 
   function handleSearch(event) {
 
-    // Ignore arrow up and arrow down
-    if(event.keyCode != 39 && event.keyCode != 40) {
+    // Ignore arrow key
+    if (event.keyCode != 39 && event.keyCode != 40 &&
+      event.keyCode != 41 && event.keyCode != 42) {
 
       // Get data from remote server via AJAX
       utils.getJson(searchService + this.value, function (results, error) {
@@ -83,26 +84,48 @@ var search = (function () {
     $searchPage.style.display = 'none';
     $resultPage.style.display = 'block';
 
+    // Clear result
     utils.emptyElement($result);
-    utils.createElement('h1', $result, ['textContent', company.name]);
 
-    utils.createElement('p', $result,
-      ['textContent', 'Capital: ' + niceNumber(company.capital) + ' ' + (company.capital_curreny || 'EUR')]);
+    if (company.capital != '') {
+
+      utils.createElement('h1', $result, ['textContent', company.name]);
+    }
+
+    if (company.capital != '') {
+
+      utils.createElement('p', $result,
+        ['textContent', 'Capital: ' + nice(company.capital) + ' ' +
+          (company.capital_curreny || 'EUR')]);
+    }
 
     if (company.parents != '') {
 
       var $parents = utils.createElement('div', $result);
-      utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
       var $parentsList = utils.createElement('ul', $parents);
+
+      utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
+
       getRelatedCompanies(company.parents, renderParent);
     }
 
     if (company.children != '') {
 
       var $children = utils.createElement('div', $result);
-      utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
       var $childrenList = utils.createElement('ul', $children);
+
+      utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
+
       getRelatedCompanies(company.children, renderChild);
+    }
+
+    if (company.source != '') {
+
+      var $source = utils.createElement('p', $result, ['className', 'source']);
+
+      // @TODO Don't use innerHTML
+      $source.innerHTML = 'Source: <a href="' + company.source_link + '">' +
+        company.source + ' (' + new Date(company.source_date).toLocaleDateString() + ')</a>';
     }
 
     function renderParent(parent) {
@@ -122,14 +145,9 @@ var search = (function () {
 
       $child.addEventListener('click', handleClick, false);
     }
-
-    // @TODO Don't use innerHTML
-    var $source = utils.createElement('p', $result);
-    $source.innerHTML = 'Source: <a href="' + company.source_link + '">' + company.source + '</a>';
   }
 
   function handleClick(event) {
-
 
     // Extend event with company id
     event.text = {};
@@ -159,9 +177,9 @@ var search = (function () {
     $resultPage.style.display = 'none';
   }
 
-  function niceNumber(x) {
+  function nice(number) {
 
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   return {
