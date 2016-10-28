@@ -4,7 +4,7 @@ var search = (function () {
   var companyService = 'http://localhost:3001/company/';
 
   var autocomplete;
-  var $search, $searchButton, $searchPage, $result, $resultPage, $homeButton;
+  var $search, $searchPage, $result, $resultPage, $homeButton;
 
   document.addEventListener('DOMContentLoaded', init, false);
 
@@ -12,7 +12,6 @@ var search = (function () {
 
     $search = document.querySelector('.search');
     $searchPage = document.querySelector('.search-page');
-    $searchButton = document.querySelector('.search-button');
 
     $result = document.querySelector('.result');
     $resultPage = document.querySelector('.result-page');
@@ -102,9 +101,9 @@ var search = (function () {
     if (company.parents != '') {
 
       var $parents = utils.createElement('div', $result);
-      var $parentsList = utils.createElement('ul', $parents);
-
       utils.createElement('h3', $parents, ['textContent', 'Shares held by']);
+
+      var $parentsList = utils.createElement('ul', $parents);
 
       getRelatedCompanies(company.parents, renderParent);
     }
@@ -112,12 +111,16 @@ var search = (function () {
     if (company.children != '') {
 
       var $children = utils.createElement('div', $result);
-      var $childrenList = utils.createElement('ul', $children);
-
       utils.createElement('h3', $children, ['textContent', 'Shareholder of']);
+
+      var $childrenList = utils.createElement('ul', $children);
 
       getRelatedCompanies(company.children, renderChild);
     }
+
+    // Graph demo
+    utils.createElement('h3', $result, ['textContent', 'Graph']);
+    utils.createElement('img', $result, ['src', 'network.svg'], ['className', 'network']);
 
     if (company.source != '') {
 
@@ -125,7 +128,7 @@ var search = (function () {
 
       // @TODO Don't use innerHTML
       $source.innerHTML = 'Source: <a href="' + company.source_link + '">' +
-        company.source + ' (' + new Date(company.source_date).toLocaleDateString() + ')</a>';
+        company.source + ' (' + new Date(company.source_date).toLocaleDateString('en-US') + ')</a>';
     }
 
     function renderParent(parent) {

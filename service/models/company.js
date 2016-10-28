@@ -5,6 +5,7 @@ var companySchema = new Schema({
 
   id: String,
   name: String,
+  type: String,
   capital: Number,
   capital_currency: String,
   capital_share: Number,

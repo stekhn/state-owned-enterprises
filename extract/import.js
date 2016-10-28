@@ -10,7 +10,7 @@ var collectionName = 'companies';
 (function init() {
 
    // Load and parse the datasets
-  var companies = parseCSV(loadFile('./extract/master1.csv'));
+  var companies = parseCSV(loadFile('./extract/demo.csv'));
 
   saveToMongo(companies);
 })();
@@ -33,7 +33,7 @@ function saveToMongo(companies) {
         // Convert date strings to date objects
         company.source_date = new Date(company.source_date);
 
-        if(company.parents) {
+        if (company.parents) {
 
           company.parents = company.parents.toString();
           company.parents = company.parents.split(',');
@@ -42,7 +42,7 @@ function saveToMongo(companies) {
           company.parents = [];
         }
 
-        if(company.children) {
+        if (company.children) {
 
           company.children = company.children.toString();
           company.children = company.children.split(',');
@@ -73,19 +73,19 @@ function saveToMongo(companies) {
           db.close();
         } else {
 
-          console.log(error);
+          console.error(error);
           db.close();
         }
       });
     } else {
 
-      console.log(error);
+      console.error(error);
       db.close();
     }
   });
 }
 
-function parseCSV(data, callback) {
+function parseCSV(data) {
 
   var options = {
 
@@ -101,7 +101,7 @@ function parseCSV(data, callback) {
       return parsedData;
     } else {
 
-      console.log(error);
+      console.error(error);
     }
   });
 }
@@ -115,6 +115,6 @@ function loadFile(relativePath) {
     return fs.readFileSync(relativePath, 'utf8').toString();
   } catch (error) {
 
-    console.log(error);
+    console.error(error);
   }
 }
