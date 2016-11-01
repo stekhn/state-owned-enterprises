@@ -1,0 +1,17 @@
+section(class='center search-page')
+
+  h2=title
+
+  script(type='text/javascript' src='scripts/search.js')
+  script(type='text/javascript' src='scripts/utils.js')
+  script(type='text/javascript' src='libs/awesomplete/awesomplete.min.js')
+
+  form
+    fieldset
+      input(class='search' type='search' autofocus)
+      button(class='search-button' type='button')
+        div
+          span Search
+            img(src='images/search.svg')
+
+  include ./info.pug
