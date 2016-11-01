@@ -16,7 +16,7 @@ var search = (function () {
     $result = document.querySelector('.result');
     $resultPage = document.querySelector('.result-page');
 
-    $homeButton  = document.querySelector('.home-button');
+    $homeButton  = document.querySelector('.home');
 
     initAutocomplete();
     bindEvents();
@@ -120,7 +120,7 @@ var search = (function () {
 
     // Graph demo
     utils.createElement('h3', $result, ['textContent', 'Graph']);
-    utils.createElement('img', $result, ['src', 'network.svg'], ['className', 'network']);
+    utils.createElement('img', $result, ['src', 'images/network.svg'], ['className', 'network']);
 
     if (company.source != '') {
 

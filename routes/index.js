@@ -4,8 +4,10 @@ var router = express.Router();
 
 // GET: /
 router.get('/', function(req, res) {
+
   res.render('index/index', {
-    title: 'Hello, World!'
+
+    title: 'Search for state-owned enterprises'
   });
 });
 
