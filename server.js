@@ -23,8 +23,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/libs', express.static(path.join(__dirname, 'node_modules')));
+// Serve static content
+app.use('/libs', express.static(path.join(__dirname, '/node_modules')));
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 // Define routes
 app.use('/', routes);
